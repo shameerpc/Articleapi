@@ -24,4 +24,29 @@ exports.new = async (req, res) => {
       });
     }
   };
+
+  exports.getCategories = async (req, res) => {
+    try {
+      const categoriesData = await categories.find();
+  
+      if (categoriesData) {
+        res.status(200).json({
+          status: 'success',
+          message: 'Categories retrieved successfully',
+          data: categoriesData,
+        });
+      } else {
+        res.status(404).json({
+          status: 'error',
+          message: 'No categories found',
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        status: 'error',
+        message: 'Internal server error',
+        error: error.message,
+      });
+    }
+  };
   

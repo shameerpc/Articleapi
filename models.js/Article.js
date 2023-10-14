@@ -6,15 +6,12 @@ var articleSchema = new Schema({
     type: String,
   },
   categories: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Category', // Reference to the Category model
-    },
+    // {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'Category', // Reference to the Category model
+    // },
+    String
   ],
-  delete_status: {
-    type : Boolean,
-    default: false 
-  },
   description: {
     type: String,
   },
