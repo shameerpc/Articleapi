@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const articlesroutes = require("./routes.js/articleRoutes");
-const categoriesRoute = require("./routes.js/categoryRoutes");
+const articlesroutes = require("./routes/articleRoutes");
+const categoriesRoute = require("./routes/categoryRoutes");
 const PORT = process.env.PORT || 3000
 require('dotenv').config();
 const app = express();
