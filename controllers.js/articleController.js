@@ -1,10 +1,11 @@
 
-const article = require('../models.js/Article');
+
+const Article = require('../models.js/Article');
 
 
 exports.new = async (req, res) => {
     try {
-      const Article = new article({
+      const article = new Article({
         heading: req.body.heading,
         readTime: req.body.readTime,
         description: req.body.description,
@@ -15,7 +16,7 @@ exports.new = async (req, res) => {
         trending: req.body.trending,
       });
   
-      const savedArticle = await Article.save();
+      const savedArticle = await article.save();
       
       res.json({
         status: "success",
@@ -29,4 +30,33 @@ exports.new = async (req, res) => {
       });
     }
   };
+
+  exports.getarticles = async (req, res) => {
+    try {
+      // Use the await keyword to wait for the database query to complete
+      const articles = await Article.find({ delstatus: false });
+  
+      // Check if there are articles found
+      if (articles.length === 0) {
+        return res.status(404).json({
+          status: "error",
+          message: "No articles found",
+        });
+      }
+  
+      // Send the articles as a JSON response
+      res.status(200).json({
+        status: "success",
+        message: "Articles retrieved successfully",
+        data: articles,
+      });
+    } catch (error) {
+      // Handle any errors that occur during the database query
+      console.error("Error retrieving articles:", error);
+      res.status(500).json({
+        status: "error",
+        message: "Internal server error",
+      });
+    }
+  };  
   

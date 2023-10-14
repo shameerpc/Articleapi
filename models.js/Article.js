@@ -7,9 +7,14 @@ var articleSchema = new Schema({
   },
   categories: [
     {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category', // Reference to the Category model
     },
   ],
+  delete_status: {
+    type : Boolean,
+    default: false 
+  },
   description: {
     type: String,
   },

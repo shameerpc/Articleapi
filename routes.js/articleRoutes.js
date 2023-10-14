@@ -4,6 +4,7 @@ var articleController = require('../controllers.js/articleController');
 
 router.route('/')
     .post(articleController.new);
+    router.route('/').get( articleController.getarticles);    
 
 module.exports= router;
 
